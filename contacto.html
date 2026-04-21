@@ -2,12 +2,45 @@
 <html>
 <head>
 <title> Contacto </title>
+<!-- <link rel="stylesheet" href="styles.css"> -->
+<style>
+	label{
+	display:block;
+	}
+	input[type="checkbox"]{
+	width:40px;
+	height:40px;
+	}
+</style>
+
+	<script>
+	
+	function check_form()	{
+	console.log("Click!!!!");
+	let nombre = document.getElementById("contacto-nombre").value;
+	
+	console.log(nombre)
+	
+	}
+	
+	function check_mail(){
+		let lengthEmail = document.getElementById("contacto-email").value;
+		if (lengthEmail < 6){
+		console.log("Oye, que es muy pequeño!");
+		document.getElementById("contacto-email").focus();
+		return false;
+		}
+	}
+	
+	
+	
+	</script>
+	
 </head>
 <body>
 <header> 
 	<hgroup>
 		<h1> Contacto </h1>
-		<p> Hola mundo </p>
 		<menu>
 			<ul>
 				<li><a href="PáginaPersonal.html">Portada</a></li>
@@ -21,7 +54,17 @@
 </header>
 
 <main>
-
+	<form>
+		
+		<p><label for="contacto-nombre">Tu Nombre:</label> <input type="text" name="nombre" id="contacto-nombre" /></p>
+		<p><label for="contacto-email">Email: <input type="email" name="email" id="contacto-email" /></p>
+		<p><label for="contacto-nacimiento">Nacimiento: <input type="date" name="nacimiento" id="contacto-nacimiento" /></p>
+		<p><label for="contacto-color">Color: <input type="color" name="favorito" id="contacto-color" /></p>
+		<p>Checkbox: <input type="checkbox" name="checkbox" id="contacto-checkbox"/></p>
+		<p><input type="button" name="enviar" value="Botón" onclick="check_mail();" /></p>
+		
+	</form>
+	<p> <input type="button" value="0" onclick="clickOnSpot()" id="button"></p>
 </main>
 
 <p> joan.toda@estudiant.enti.cat</p>
@@ -31,6 +74,20 @@
 </footer>
 
 
-
 </body>
+<script>
+	  let count = 0;
+
+	  function clickOnSpot() {
+		const button = document.getElementById("button");
+		count++;
+
+		button.value = count;
+
+		// Tamaño base + crecimiento
+		let size = 50 + count * 5; // píxeles
+		button.style.width = size + "px";
+		button.style.height = size + "px";
+	  }
+</script>
 </html>
