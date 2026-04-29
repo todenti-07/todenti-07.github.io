@@ -1,0 +1,56 @@
+<!DOCTYPE html>
+<html>
+<head>
+	<title> Contacto </title>
+	<link rel="stylesheet" href="styles.css">
+<style>
+
+	.ee button{
+	size = 20;
+	}
+
+</style>
+
+</head>
+<body>
+<header> 
+	<hgroup>
+		<h1> Clicker </h1>
+		<menu>
+			<ul>
+				<li><a href="index.html">Portada</a></li>
+				<li><a href="curriculum.html">CV</a></li>
+				<li><a href="aficiones.html">Aficiones</a></li>
+				<li><a href="enlaces.html">Enlaces</a></li>
+				<li><a href="contacto.html">Contacto</a></li>
+			</ul>	
+		</menu>
+	</hgroup>
+</header>
+
+<main>
+	<p> <input type="button" value="0" onclick="clickOnSpot()" id="button"></p>
+</main>
+
+<footer>
+	<p> Joan Toda 2026 </p>
+</footer>
+
+
+</body>
+<script>
+	  let count = 0;
+
+	  function clickOnSpot() {
+		const button = document.getElementById("button");
+		count++;
+
+		button.value = count;
+
+		// Tamaño base + crecimiento
+		let size = 20 + count * 5; // píxeles
+		button.style.width = size + "px";
+		button.style.height = size + "px";
+	  }
+</script>
+</html>

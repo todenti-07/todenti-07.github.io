@@ -11,6 +11,14 @@
 	width:40px;
 	height:40px;
 	}
+	.ee button{
+	size = 20;
+	}
+	
+	#error-msg{
+	display:none;
+	color:red;
+	}
 </style>
 
 	<script>
@@ -25,14 +33,59 @@
 	
 	function check_mail(){
 		let lengthEmail = document.getElementById("contacto-email").value;
-		if (lengthEmail < 6){
+		if (lengthEmail.length < 6){
 		console.log("Oye, que es muy pequeño!");
 		document.getElementById("contacto-email").focus();
 		return false;
 		}
 	}
 	
+	function show_error (message){
 	
+		let error_msg = document.getElementById("error-msg");
+		
+		error_msg.innerHTML = message;
+		
+		error_msg.style.display = "block";
+		
+	}
+	
+	function verificarAño() {
+		let dateEnviado = document.getElementById("contacto-nacimiento").value;
+		let today = new Date();
+		let yearActual = today.getFullYear();
+		if (!dateEnviado) {
+			show_error("No has seleccionado ninguna fecha");
+			return false;
+		}
+		
+		let año = new Date(dateEnviado).getFullYear();
+		if (año < 1900) {
+			show_error("Un poco viejo, no?");
+			return false;
+		} 
+		else if (yearActual - año <= 18) {
+			show_error("Eres menor de 18!");
+			return false;
+		} 
+		else {
+			show_error("Eres mayor de 18");
+			return true;
+		}
+	}
+	
+	function verificarLocalización (){
+		let paisEnviado = document.getElementById("contacto-pais").value;
+		let img = document.getElementById("imagen-cat");
+
+		console.log("País seleccionado:", paisEnviado);
+		
+		img.style.display = "none"
+
+		if (paisEnviado === 'cat'){
+			img.style.display = "block";
+		}
+	}
 	
 	</script>
 	
@@ -43,7 +96,7 @@
 		<h1> Contacto </h1>
 		<menu>
 			<ul>
-				<li><a href="PáginaPersonal.html">Portada</a></li>
+				<li><a href="index.html">Portada</a></li>
 				<li><a href="curriculum.html">CV</a></li>
 				<li><a href="aficiones.html">Aficiones</a></li>
 				<li><a href="enlaces.html">Enlaces</a></li>
@@ -55,13 +108,34 @@
 
 <main>
 	<form>
+		<h2> Formulario de contacto:</h2>
 		
 		<p><label for="contacto-nombre">Tu Nombre:</label> <input type="text" name="nombre" id="contacto-nombre" /></p>
 		<p><label for="contacto-email">Email: <input type="email" name="email" id="contacto-email" /></p>
 		<p><label for="contacto-nacimiento">Nacimiento: <input type="date" name="nacimiento" id="contacto-nacimiento" /></p>
 		<p><label for="contacto-color">Color: <input type="color" name="favorito" id="contacto-color" /></p>
 		<p>Checkbox: <input type="checkbox" name="checkbox" id="contacto-checkbox"/></p>
-		<p><input type="button" name="enviar" value="Botón" onclick="check_mail();" /></p>
+		<p><label for="contacto-pais">País:</label>
+			<select name="pais" id="contacto-pais" onchange="verificarLocalización()">
+				<option value="es">España</option>
+				<option value="gb">Gran bretaña</option>
+				<option value="fr">Francia</option>
+				<option value="ad">Andorra</option>
+				<option value="pt">Portugal</option>
+				<option value="cat">Catalunya</option>
+			</select>
+		</p>
+		<p>
+			<textarea>
+			
+			</textarea>
+		</p>
+		<img id="imagen-cat" 
+		 src="https://pbs.twimg.com/media/E_BKovKXsAIi-wc?format=jpg&name=small" 
+		 style="display:none;">
+		<p><input type="button" name="enviar" value="Verificar Correo" onclick="check_mail();" /></p>
+		<p id="error-msg"></p>
+		<p><input type="button" name="enviar" value="Ver Año Por Consola" onclick="verificarAño();" /></p>
 		
 	</form>
 	<p> <input type="button" value="0" onclick="clickOnSpot()" id="button"></p>
@@ -85,7 +159,7 @@
 		button.value = count;
 
 		// Tamaño base + crecimiento
-		let size = 50 + count * 5; // píxeles
+		let size = 20 + count * 5; // píxeles
 		button.style.width = size + "px";
 		button.style.height = size + "px";
 	  }
