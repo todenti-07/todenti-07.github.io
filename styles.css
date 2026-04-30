@@ -1,20 +1,24 @@
-.index body {
-	margin: 0;
-	padding: 0;
+html, body.index  {
+	box-sizing: border-box;
+	padding:0;
+	margin:0;
+	overflow: hidden;
 	height: 100%;
-}
-.curriculum body{
 	
 }
 
+
 .contenedor {
 	display: grid;
-	grid-template-columns: repeat(4, 1fr);
+	grid-template-columns: repeat(6, 1fr);
 	height: 100vh;  
 	grid-auto-rows: 1fr; 
 	gap: 10px;
 	padding: 10px;
+	padding-top: 0;
+	padding-bottom: 18px;
 	box-sizing: border-box;
+	margin-top: 8px;
 }
 
 /* base */
@@ -24,6 +28,7 @@
 	font-weight: bold;
 	padding: 15px;
 	border-radius: 24px;
+	text-align:center;
 }
 
 .contenedor li:hover {
@@ -66,7 +71,15 @@
 .verde { background: #a8d60f; color: black; }
 .negro { background: #111; }
 .morado { background: #a896c8; }
-.rosa { background: #8a1f52; }
+.magenta { background: #8a1f52; }
+
+.marron-claro { background: #c0976b; }
+.lima { background: #68dd4d; color: black; }
+.purpura { background: #7867ed; }
+.turquesa { background: #4ee1c0; }
+.pistacho { background: #c4d055; color: black; }
+.morado-claro { background: #b18be9; }
+
 
 
 
